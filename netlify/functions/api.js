@@ -1,4 +1,4 @@
-// Dados simulados (para persistência temporária durante a execução do container)
+// Dados simulados (armazenamento em memória – não perene)
 let receitas = [
   { id: "1", nome: "Salário", valor: 5000 },
   { id: "2", nome: "Freelancer", valor: 1500 }
@@ -14,7 +14,7 @@ let contas = [
   { id: "2", nome: "Conta Variável", valor: 500 }
 ];
 
-// Função para calcular os totais: saldo, total de receitas e despesas (compras)
+// Função para calcular os totais (saldo, total de receitas e despesas)
 function getTotaisFunction() {
   const totalReceitas = receitas.reduce((acc, item) => acc + item.valor, 0);
   const totalCompras = compras.reduce((acc, item) => acc + item.valor, 0);
@@ -22,7 +22,7 @@ function getTotaisFunction() {
   return { saldo, receitas: totalReceitas, despesas: totalCompras };
 }
 
-// Função auxiliar para gerar um novo id (incremental)
+// Função auxiliar para gerar novos IDs (incremental)
 function generateId(dataArray) {
   let maxId = 0;
   dataArray.forEach(item => {
@@ -47,9 +47,10 @@ exports.handler = async function(event) {
 
     let responseData = {};
 
-    // Seleciona a ação com base no valor de body.action
+    // Seleciona a ação conforme o atributo "action" enviado no body
     switch (body.action) {
-      // RECEITAS
+
+      // --- RECEITAS ---
       case "getReceitas":
         responseData = { receitas };
         break;
@@ -77,12 +78,12 @@ exports.handler = async function(event) {
         }
         break;
 
-      // TOTAlIZAR
+      // --- TOTAIS ---
       case "getTotais":
         responseData = getTotaisFunction();
         break;
 
-      // COMPRAS
+      // --- COMPRAS ---
       case "getCompras":
         responseData = { compras };
         break;
@@ -128,7 +129,7 @@ exports.handler = async function(event) {
         }
         break;
 
-      // CONTAS
+      // --- CONTAS ---
       case "getContas":
         responseData = { contas };
         break;
@@ -189,3 +190,4 @@ exports.handler = async function(event) {
     };
   }
 };
+
