@@ -1,6 +1,6 @@
 // app.js
 // Defina a URL do seu backend. Substitua "SEU_SITE_NETLIFY" pela parte correta da URL fornecida pelo Netlify.
-const webAppUrl = "https://SEU_SITE_NETLIFY.netlify.app/.netlify/functions/api";
+const webAppUrl = "https://fluffy-bublanina-1d3211.netlify.app/.netlify/functions/api";
 
 // Função para buscar as receitas
 function getReceitas() {
